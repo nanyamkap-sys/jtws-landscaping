@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JTWS Landscaping & More LLC</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0d0d0d;
+      color: #ffffff;
+      scroll-behavior: smooth;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    header {
+      background: rgba(17, 17, 17, 0.96);
+      border-bottom: 2px solid #2e7d32;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .brand img {
+      max-width: 220px;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+      box-shadow: 0 0 20px rgba(46,125,50,0.6), 0 0 40px rgba(46,125,50,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .brand img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(46,125,50,0.8), 0 0 60px rgba(46,125,50,0.4);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-text strong {
+      color: #2e7d32;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .brand-text span {
+      font-size: 0.95rem;
+      color: #bdbdbd;
+      letter-spacing: 0.5px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #2e7d32;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      padding: 110px 20px 90px;
+      background:
+        radial-gradient(circle at top, rgba(76, 175, 80, 0.22), transparent 35%),
+        linear-gradient(180deg, #111111 0%, #0d0d0d 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: auto -10% -120px -10%;
+      height: 240px;
+      background: radial-gradient(circle, rgba(76,175,80,0.14) 0%, rgba(76,175,80,0) 70%);
+      filter: blur(20px);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 950px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      animation: fadeRise 0.9s ease both;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 8px 14px;
+      border: 1px solid rgba(76, 175, 80, 0.35);
+      border-radius: 999px;
+      color: #9be6a0;
+      background: rgba(76, 175, 80, 0.08);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .hero h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.4rem, 5vw, 4.4rem);
+      line-height: 1.1;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #dddddd;
+    }
+
+    .hero-actions {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 18px 40px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #1b5e20, #2e7d32);
+      color: #0d0d0d;
+      box-shadow: 0 15px 40px rgba(76, 175, 80, 0.5);
+      animation: glow 2.5s infinite;
+      position: relative;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #67d86d, #3fa34d);
+      transform: scale(1.08) translateY(-2px);
+      box-shadow: 0 20px 50px rgba(76, 175, 80, 0.7);
+    }
+
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      inset: -8px;
+      border-radius: 999px;
+      border: 1px solid rgba(155, 230, 160, 0.24);
+      pointer-events: none;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .stats {
+      max-width: 1100px;
+      margin: 36px auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .stat-card {
+      background: #171717;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 22px;
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 1.6rem;
+      color: #2e7d32;
+      margin-bottom: 6px;
+    }
+
+    .section {
+      padding: 72px 20px;
+    }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 14px;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+    }
+
+    .section-subtitle {
+      max-width: 760px;
+      margin: 0 auto 34px;
+      text-align: center;
+      color: #cfcfcf;
+    }
+
+    .services,
+    .gallery-grid,
+    .reviews-grid,
+    .pricing-grid,
+    .equipment-grid,
+    .contact-grid,
+    .before-after-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .services,
+    .gallery-grid,
+    .reviews-grid,
+    .equipment-grid {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .pricing-grid,
+    .before-after-grid,
+    .contact-grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .card {
+      background: rgba(23, 23, 23, 0.88);
+      padding: 26px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+      height: 100%;
+      backdrop-filter: blur(10px);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 38px rgba(76, 175, 80, 0.16);
+      border-color: rgba(76, 175, 80, 0.25);
+    }
+
+    .icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      color: #2e7d32;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #d9d9d9;
+    }
+
+    .gallery-grid img,
+    .before-after-grid img { width: 100%; height: 260px; object-fit: cover; border-radius: 16px; display: block; border: 1px solid rgba(255,255,255,0.08); }
+
+/* Before After Slider */
+.ba-wrap { position: relative; overflow: hidden; border-radius: 16px; }
+.ba-img { display:block; width:100%; height:320px; object-fit:cover; }
+.ba-after { position:absolute; top:0; left:0; height:100%; width:50%; overflow:hidden; }
+.ba-handle { position:absolute; top:0; left:50%; height:100%; width:2px; background:#2e7d32; }
+.ba-handle::after { content:""; position:absolute; top:50%; left:-10px; width:22px; height:22px; background:#2e7d32; border-radius:50%; transform:translateY(-50%); box-shadow:0 0 10px rgba(46,125,50,0.8); cursor:ew-resize; }
+
+    .map-card iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 340px;
+      border: none;
+      border-radius: 18px;
+    }
+
+    .review-name {
+      display: block;
+      margin-top: 14px;
+      color: #9be6a0;
+      font-weight: 700;
+    }
+
+    .price-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .price-tag {
+      font-size: 2rem;
+      color: #2e7d32;
+      font-weight: 800;
+      margin: 8px 0 14px;
+    }
+
+    .price-list {
+      padding-left: 18px;
+      margin: 0;
+      color: #d9d9d9;
+    }
+
+    .price-list li { margin-bottom: 8px; }
+
+    .featured {
+      border: 1px solid rgba(76, 175, 80, 0.34);
+      box-shadow: 0 16px 40px rgba(76, 175, 80, 0.14);
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: #2e7d32;
+      color: #0d0d0d;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .contact-card p,
+    .contact-card a {
+      color: #d9d9d9;
+      text-decoration: none;
+    }
+
+    .contact-card a:hover {
+      color: #2e7d32;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #101010;
+      color: #ffffff;
+      font: inherit;
+    }
+
+    form input::placeholder,
+    form textarea::placeholder {
+      color: #9f9f9f;
+    }
+
+    footer {
+      background: #111111;
+      border-top: 2px solid #2e7d32;
+      padding: 26px 20px;
+      text-align: center;
+      color: #cfcfcf;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .floating-actions {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1200;
+      animation: slideInFloat 0.7s ease both;
+    }
+
+    .floating-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: bold;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      animation: pulse 2s infinite;
+      backdrop-filter: blur(10px);
+    }
+
+    .floating-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.45);
+    }
+
+    .floating-call-en {
+      background: #2e7d32;
+      color: #0d0d0d;
+    }
+
+    .floating-call-es {
+      background: #2e7d32;
+      color: #ffffff;
+    }
+
+    .floating-text {
+      background: transparent;
+      color: #2e7d32;
+      border: 2px solid #2e7d32;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.6); }
+      70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 10px rgba(76,175,80,0.4); }
+      50% { box-shadow: 0 0 25px rgba(76,175,80,0.8); }
+      100% { box-shadow: 0 0 10px rgba(76,175,80,0.4); }
+    }
+
+    @keyframes fadeRise {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInFloat {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-wrap {
+        justify-content: center;
+      }
+
+      .brand {
+        justify-content: center;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 90px;
+      }
+
+      .floating-actions {
+        right: 14px;
+        bottom: 14px;
+        left: 14px;
+      }
+
+      .floating-btn {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="#home" class="brand">
+      <img src="logo.png" alt="JTWS Landscaping & More LLC logo">
+      <div class="brand-text">
+        <strong>JTWS Landscaping & More LLC</strong>
+        <span>Clean cuts. Strong curb appeal.</span>
+      </div>
+    </a>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#features">Features</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#equipment">Equipment</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div style="margin-bottom:10px;color:#9be6a0;font-weight:700;">⭐ Trusted Local Landscaping Service</div>
+    <div class="eyebrow">Professional Landscaping in Kissimmee & Orlando</div>
+    <h1>Premium Landscaping Solutions for Every Space</h1>
+    <p>Explore Top-Tier Landscape Solutions for Every Space. Our landscape design services focus on enhancing outdoor environments by integrating aesthetic appeal with sustainability. We prioritize your vision while ensuring that our designs foster a healthy ecosystem, making your space not only visually striking but also environmentally responsible and functional for years to come.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">🚀 Get a Free Quote</a>
+    </div>
+    <div class="stats">
+      <div class="stat-card">
+        <strong>Free Estimates</strong>
+        No obligation quotes — fast and easy.
+      </div>
+      <div class="stat-card">
+        <strong>Residential</strong>
+        Reliable lawn care and curb appeal upgrades for homes.
+      </div>
+      <div class="stat-card">
+        <strong>Custom Work</strong>
+        Tailored landscaping plans built around your property.
+      </div>
+      <div class="stat-card">
+        <strong>Local Service</strong>
+        Proudly serving Kissimmee, Orlando, and nearby areas.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="section-inner">
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-subtitle">From routine lawn care to landscape upgrades, we help properties look clean, polished, and inviting year-round.</p>
+    <div class="services">
+      <div class="card"><div class="icon">🌱</div><h3>Lawn Care</h3><p>Professional mowing, edging, and regular maintenance to keep your yard sharp and healthy.</p></div>
+      <div class="card"><div class="icon">🎨</div><h3>Landscape Design</h3><p>Custom outdoor designs tailored to your style, property layout, and long-term vision.</p></div>
+      <div class="card"><div class="icon">🌳</div><h3>Tree Services</h3><p>Safe trimming, pruning, and removal to improve appearance and maintain property safety.</p></div>
+      <div class="card"><div class="icon">🟩</div><h3>Artificial Grass</h3><p>Low-maintenance, lush green turf that stays attractive in every season.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="section-inner">
+    <h2 class="section-title">Why Choose Us</h2>
+    <p class="section-subtitle">We combine visual appeal, dependable service, and practical outdoor solutions that add value to your property.</p>
+    <div class="services">
+      <div class="card"><div class="icon">🌍</div><h3>Eco-Friendly Design</h3><p>Sustainable landscaping choices that support a healthier outdoor environment.</p></div>
+      <div class="card"><div class="icon">📐</div><h3>Custom Planning</h3><p>Personalized layouts and recommendations designed around your specific space.</p></div>
+      <div class="card"><div class="icon">🌸</div><h3>Year-Round Beauty</h3><p>Landscapes planned to stay clean, attractive, and functional throughout the year.</p></div>
+      <div class="card"><div class="icon">⚙️</div><h3>Efficient Maintenance</h3><p>Smart solutions that reduce upkeep while preserving a high-end finished look.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="gallery">
+  <div class="section-inner">
+    <h2 class="section-title">Our Work</h2>
+    <p class="section-subtitle">Showcase your landscaping results with clean visuals that help future customers picture what you can do for their property. Upload your real job photos and we can swap them into this section next.</p>
+    <div class="gallery-grid">
+      <img src="lawn 1.jpg" alt="JTWS landscaping walkway project">
+      <img src="2.jpg" alt="JTWS artificial grass and poolside landscaping project">
+      <img src="3.jpg" alt="JTWS backyard artificial grass installation">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="beforeafter">
+  <div class="section-inner">
+    <h2 class="section-title">Before & After</h2>
+    <p class="section-subtitle">Drag the slider to see the transformation.</p>
+    <div class="card">
+      <div class="ba-wrap" id="ba">
+        <img src="lawn 1.jpg" class="ba-img" alt="Before">
+        <div class="ba-after" id="after">
+          <img src="3.jpg" class="ba-img" alt="After">
+        </div>
+        <div class="ba-handle" id="handle"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="servicearea">
+  <div class="section-inner">
+    <h2 class="section-title">Service Area</h2>
+    <p class="section-subtitle">Proudly serving Kissimmee, Orlando, and surrounding communities with dependable landscaping services.</p>
+    <div class="card map-card">
+      <iframe src="https://www.google.com/maps?q=Kissimmee,Florida&output=embed" loading="lazy" allowfullscreen title="Service area map"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="testimonials">
+  <div class="section-inner">
+    <h2 class="section-title">Customer Reviews</h2>
+    <p class="section-subtitle">Strong reviews help build trust and turn visitors into paying customers.</p>
+    <div class="reviews-grid">
+      <div class="card"><p>“Amazing work. My yard looks completely different, and the attention to detail was excellent.”</p><span class="review-name">— Local Customer</span></div>
+      <div class="card"><p>“Very professional, reliable, and easy to work with. I would absolutely recommend this company.”</p><span class="review-name">— Homeowner</span></div>
+      <div class="card"><p>“Fast service, clean finish, and great communication from start to finish.”</p><span class="review-name">— Client</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="pricing">
+  <div class="section-inner">
+    <h2 class="section-title">Simple Pricing</h2>
+    <p class="section-subtitle">Use these as starter packages while you build your customer base. You can adjust pricing later as your business grows.</p>
+    <div class="pricing-grid">
+      <div class="card price-card">
+        <h3>Basic</h3>
+        <div class="price-tag">From $50</div>
+        <ul class="price-list">
+          <li>Small yard mowing</li>
+          <li>Basic edging</li>
+          <li>Blow-off cleanup</li>
+        </ul>
+      </div>
+      <div class="card price-card featured">
+        <div class="featured-badge">Popular</div>
+        <h3>Standard</h3>
+        <div class="price-tag">From $100</div>
+        <ul class="price-list">
+          <li>Medium yard service</li>
+          <li>Edging and trimming</li>
+          <li>Detailed cleanup</li>
+        </ul>
+      </div>
+      <div class="card price-card">
+        <h3>Premium</h3>
+        <div class="price-tag">Custom Quote</div>
+        <ul class="price-list">
+          <li>Landscape improvements</li>
+          <li>Artificial grass projects</li>
+          <li>Specialty outdoor work</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="equipment">
+  <div class="section-inner">
+    <h2 class="section-title">Our Equipment</h2>
+    <p class="section-subtitle">We use dependable equipment to deliver cleaner cuts, precise edging, and a polished finished look on every job.</p>
+    <div class="equipment-grid">
+      <div class="card"><h3>Commercial Mowers</h3><p>High-performance mowers for smooth, even cuts and efficient service on every property.</p></div>
+      <div class="card"><h3>Professional Trimmers</h3><p>Precision trimming and edging tools for clean lines around sidewalks, flower beds, and driveways.</p></div>
+      <div class="card"><h3>Power Blowers</h3><p>Fast cleanup equipment that leaves every yard neat, sharp, and ready to impress.</p></div>
+      <div class="card"><h3>Specialty Tools</h3><p>Advanced tools for landscaping upgrades, artificial grass installation, and custom outdoor projects.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="section-inner">
+    <h2 class="section-title">Contact Us</h2>
+    <p class="section-subtitle">Ready to improve your outdoor space? Reach out today for a free quote.</p>
+    <div class="contact-grid">
+      <div class="card contact-card">
+        <h3>Get In Touch</h3>
+        <p><strong>English:</strong> <a href="tel:2393916651">(239) 391-6651</a></p>
+        <p><strong>Portuguese / Spanish:</strong> <a href="tel:4078188001">(407) 818-8001</a> | <a href="sms:4078188001" style="color:#2e7d32; font-weight:bold;">Text</a></p>
+        <p><strong>Email:</strong> <a href="mailto:jtwslandscapingmorellc@gmail.com">jtwslandscapingmorellc@gmail.com</a></p>
+        <p><strong>Service Area:</strong> Kissimmee, Orlando, and surrounding areas</p>
+      </div>
+      <div class="card">
+        <h3>Request a Quote</h3>
+        <form action="mailto:jtwslandscapingmorellc@gmail.com" method="post" enctype="text/plain">
+          <input type="tel" name="phone" placeholder="Your Phone Number" required>
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <textarea name="message" rows="5" placeholder="Tell us about your project" required></textarea>
+          <button type="submit" class="btn btn-primary">🚀 Get My Free Quote</button>
+          <p style="font-size:0.85rem;color:#9f9f9f;margin-top:8px;">We respond quickly. Same-day quotes available.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <p>© 2026 JTWS Landscaping & More LLC. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="floating-actions">
+  <a href="tel:2393916651" class="floating-btn floating-call-en" title="Call English">📞</a>
+  <a href="tel:4078188001" class="floating-btn floating-call-es" title="Call Español / Português">🌐</a>
+  <a href="sms:4078188001" class="floating-btn floating-text" title="Text Us">💬</a>
+</div>
+
+<script>
+const ba = document.getElementById('ba');
+const after = document.getElementById('after');
+const handle = document.getElementById('handle');
+let dragging=false;
+handle.addEventListener('mousedown',()=>dragging=true);
+document.addEventListener('mouseup',()=>dragging=false);
+document.addEventListener('mousemove',(e)=>{
+ if(!dragging) return;
+ const rect = ba.getBoundingClientRect();
+ let x = e.clientX - rect.left;
+ x = Math.max(0, Math.min(x, rect.width));
+ const percent = (x/rect.width)*100;
+ after.style.width = percent + '%';
+ handle.style.left = percent + '%';
+});
+</script>
+</body>
+</html>
